@@ -18,7 +18,6 @@ def get_main_doc_info_success(client, conn_redis):
     with patch('authservice.authservice.checkHeaderToken') as mock_auth:
         mock_auth.return_value = (True, 'test_user')
 
-        # ПРАВИЛЬНЫЙ МОК — мокаем метод у ГЛОБАЛЬНОГО ОБЪЕКТА
         with patch('interface.docPage.db_adapter.getDocInfo') as mock_get_doc_info:
             mock_get_doc_info.return_value = (
                 {
@@ -62,7 +61,6 @@ def get_doc_content_success(client, conn_redis):
     with patch('authservice.authservice.checkHeaderToken') as mock_auth:
         mock_auth.return_value = (True, 'test_user')
 
-        # Мокаем db_adapter.getDocContent
         with patch('interface.docPage.db_adapter.getDocContent') as mock_get_content:
             mock_get_content.return_value = [
                 {"section": "Введение", "text": "Текст введения..."},
